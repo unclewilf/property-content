@@ -1,9 +1,8 @@
 package com.hotels.pca.service
 
-import com.hotels.pca.domain.FullPropertyContent
-import com.hotels.pca.domain.SummaryPropertyContent
+import com.hotels.pca.domain.Flavour.Flavour
+import com.hotels.pca.domain.{HcomId, PropertyContent}
 
 trait PropertyContentService {
-  def retrieveFullPropertyContent: Option[FullPropertyContent]
-  def retrieveSummaryPropertyContent: Option[SummaryPropertyContent]
+  def retrievePropertyContent(flavour: Flavour, id: HcomId): Option[PropertyContent]
 }

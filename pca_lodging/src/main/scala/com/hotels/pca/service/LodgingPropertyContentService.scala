@@ -7,20 +7,20 @@ import com.hotels.pca.lodging.transform.FullPropertyContentTransformer
 
 object LodgingPropertyContentService extends PropertyContentService {
 
-  override def retrievePropertyContent(flavour: Flavour, id: HcomId): Option[PropertyContent] =
+  override def retrievePropertyContent(flavour: Flavour, hcomId: HcomId): Option[PropertyContent] =
     flavour match {
-      case Full => retrieveFullFlavour(id)
-      case Summary => retrieveSummaryFlavour(id)
+      case Full => retrieveFullFlavour(hcomId)
+      case Summary => retrieveSummaryFlavour(hcomId)
     }
 
-  def retrieveFullFlavour(id: HcomId): Option[PropertyContent] = {
-    LodgingService.lookupHotel(id.id) match {
+  def retrieveFullFlavour(hcomId: HcomId): Option[PropertyContent] = {
+    LodgingService.lookupHotel(hcomId.id) match {
       case Some(hotel) => Some(FullPropertyContentTransformer.transform(hotel))
       case None => None
     }
   }
 
-  def retrieveSummaryFlavour(id: HcomId): Option[PropertyContent] = {
+  def retrieveSummaryFlavour(hcomId: HcomId): Option[PropertyContent] = {
     Option.empty
   }
 }
